@@ -78,6 +78,7 @@ productWrap.addEventListener("click", (e) => {
     .post(`${customerApiUrl}/carts`, addCustomerProductData)
     .then(function (res) {
       getCartList();
+      alert(`已加入購物車！`);
     })
     .catch(function (error) {
       console.log(error.response.data);
@@ -107,6 +108,7 @@ shoppingCartTable.addEventListener("click", (e) => {
     .then(function (res) {
       let data = res.data.carts;
       customerProductCartList(data);
+      alert(`已從購物車刪除此項產品！`);
     })
     .catch(function (error) {
       console.log(error.response.data);
@@ -122,6 +124,7 @@ shoppingCartTable.addEventListener("click", (e) => {
       .delete(`${customerApiUrl}/carts`)
       .then(function (res) {
         getCartList();
+        alert(`已清空購物車。`);
       })
       .catch(function (error) {
         console.log(error.response.data);
@@ -141,7 +144,7 @@ orderInfoBtn.addEventListener("click", (e) => {
     .then(function (res) {
       orderInfoForm.reset();
       getCartList();
-      console.log(res.data);
+      alert(`感謝您的預定，我們會盡快處理您的訂單，謝謝。`);
     })
     .catch(function (error) {
       alert(error.response.data.message);
