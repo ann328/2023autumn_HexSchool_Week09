@@ -189,7 +189,9 @@ function customerProductCartList(data) {
         </div>
     </td>
     <td>NT$${v.product.price}</td>
-    <td>${v.quantity}</td>
+    <td>
+    ${v.quantity}
+    </td>
     <td>NT$${v.product.price * v.quantity}</td>
     <td class="discardBtn">
         <a href="#" class="material-icons" data-id="${v.id}">

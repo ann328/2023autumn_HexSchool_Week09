@@ -174,11 +174,27 @@ function renderProductsData(categoryData, priceData) {
   categoryDataKeys.forEach((v) => {
     categoryDataArr.push([v, categoryData[v]]);
   });
+
   let priceDataKeys = Object.keys(priceData);
   let priceDataArr = [];
   priceDataKeys.forEach((v) => {
-    priceDataArr.push([v, priceData[v]]);
+    priceDataArr.push({ product: v, productRevenue: priceData[v] });
   });
+  priceDataArr.sort((a, b) => {
+    return b.productRevenue - a.productRevenue;
+  });
+  let productTopThree = priceDataArr.slice(0, 3);
+  let productOther = priceDataArr.slice(3);
+  let productOtherTotal = 0;
+  let productAllData = [];
+  productTopThree.forEach((v) => {
+    productAllData.push([v.product, v.productRevenue]);
+  });
+  productOther.forEach((v, i) => {
+    productOtherTotal += v.productRevenue;
+  });
+  productAllData.push(["其他", productOtherTotal]);
+
   let chart = c3.generate({
     bindto: "#chart", // HTML 元素綁定
     data: {
@@ -196,7 +212,7 @@ function renderProductsData(categoryData, priceData) {
     bindto: "#chartRevenue", // HTML 元素綁定
     data: {
       type: "pie",
-      columns: priceDataArr,
+      columns: productAllData,
       color: function (color, d) {
         // d will be 'id' when called for legends
         return d.id && d.id === "data3"
