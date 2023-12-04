@@ -20,7 +20,9 @@ import"./main-ef25cd4c.js";document.addEventListener("DOMContentLoaded",function
         </div>
     </td>
     <td>NT$${r.product.price}</td>
-    <td>${r.quantity}</td>
+    <td>
+    ${r.quantity}
+    </td>
     <td>NT$${r.product.price*r.quantity}</td>
     <td class="discardBtn">
         <a href="#" class="material-icons" data-id="${r.id}">
